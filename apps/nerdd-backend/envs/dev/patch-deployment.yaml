@@ -10,6 +10,9 @@ spec:
           env:
             - name: DB_HOST
               value: rethinkdb.dev
+            # let users see a maintenance page and disable api:
+            # - name: MAINTENANCE_MODE
+            #   value: "true"
           volumeMounts:
             - name: data
               mountPath: /data
@@ -17,4 +20,3 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: pvc-media
-
