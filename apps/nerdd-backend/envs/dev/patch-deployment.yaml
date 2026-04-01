@@ -5,6 +5,18 @@ metadata:
 spec:
   template:
     spec:
+      # put this container on same host as the database if possible
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: rethinkdb
+                namespaces:
+                  - dev-rethinkdb
+                topologyKey: kubernetes.io/hostname
       containers:
         - name: nerdd-backend
           env:
